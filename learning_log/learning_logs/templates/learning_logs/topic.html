@@ -17,4 +17,5 @@
                 There are no entries for this topic yet.
             {% endfor %}
         </ul>
+        <a href="{% url 'new_entry' topic.id %}">Add an new entry</a>
     {% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block title %}
+    New Topic
+{% endblock title %}
+
+{% block content %}
+    <p>Add an new topic</p>
+    <form method="POST" action="{% url 'new_topic' %}">
+
+        <!--csrf_token 相当于数据保护-->
+        {% csrf_token %}
+        {{ form }}<br><br>
+        <input type="submit" name="submit" value="submit"/>
+
+    </form>
+{% endblock content %}
