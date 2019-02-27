@@ -1,0 +1,16 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block title %}
+    Edit Entry
+{% endblock title %}
+
+{% block content %}
+    <p><a href="{% url 'topic' topic.id %}">{{ topic }}</a></p>
+    <p>Edit entry:</p>
+    <form method="POST" action="{% url 'edit_entry' entry.id %}">
+        <!--csrf_token 相当于数据保护-->
+        {% csrf_token %}
+        {{ form }}<br><br>
+        <input type="submit" name="submit" value="save changes"/>
+    </form>
+{% endblock content %}

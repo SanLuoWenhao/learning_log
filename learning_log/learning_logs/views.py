@@ -1,10 +1,11 @@
 from django.shortcuts import render
 
+
 # Create your views here.
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.shortcuts import resolve_url
+from django.urls import reverse
 
 # insert model.py class
 from .models import Topic, Entry
@@ -67,7 +68,29 @@ def new_entry(request, topic_id):
             new_entry = form.save(commit=False)
             new_entry.topic = topic
             new_entry.save()
-            return HttpResponseRedirect(resolve_url('topics', args=[topic_id]))
+            return HttpResponseRedirect(reverse('topics'))
 
     context = {'form': form, 'topic': topic}
     return render(request, 'learning_logs/new_entry.html', context)
+
+
+def edit_entry(request, entry_id):
+
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+
+    if request.method != "POST":
+        form = EntryForm(instance=entry)
+    else:
+        form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('topic', args=[topic.id]))
+
+    context = {'topic': topic, 'form': form, 'entry': entry}
+    return render(request, 'learning_logs/edit_entry.html', context)
+
+
+
+
+
