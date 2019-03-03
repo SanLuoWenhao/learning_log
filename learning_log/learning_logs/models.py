@@ -1,11 +1,14 @@
 from django.db import models
 
 # Create your models here.
+from django.contrib.auth.models import User
+
 
 class Topic(models.Model):
     """
     用户学习主题
     """
+    ower = models.ForeignKey(User, on_delete=False)
     test = models.CharField(max_length=20)
     date_added = models.DateTimeField(auto_now_add=True)
 

@@ -6,7 +6,7 @@
 
 {% block content %}
     <p>Add an new topic</p>
-    <form method="POST" action="{% url 'new_topic' %}">
+    <form method="POST" action="{% url 'learning_logs:new_topic' %}">
 
         <!--csrf_token 相当于数据保护-->
         {% csrf_token %}

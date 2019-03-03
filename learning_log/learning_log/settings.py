@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 我的应用程序
+    # my App
     'learning_logs.apps.LearningLogsConfig',
     'users.apps.UsersConfig',
 
@@ -124,3 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#项目learning_logs Django设置
+
+LOGIN_URL = '/users/login'
